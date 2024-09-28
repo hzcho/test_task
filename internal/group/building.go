@@ -85,7 +85,7 @@ func (b *Building) Get(c *gin.Context) {
 func (b *Building) Save(c *gin.Context) {
 	building := model.Building{}
 
-	if err := c.BindJSON(&building); err != nil {
+	if err := c.ShouldBindJSON(&building); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "bad request")
 		return
 	}
