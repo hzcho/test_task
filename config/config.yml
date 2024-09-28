@@ -1,0 +1,12 @@
+server:
+  port: "8080"
+  read_time: 10s
+  write_time: 10s
+
+db:
+  username: "postgres"
+  host: "localhost"
+  port: "5436"
+  dbname: "postgres"
+  sslmode: "disable"
+  password: "example_password"
