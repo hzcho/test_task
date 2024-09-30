@@ -1,4 +1,4 @@
-FROM golang:latest AS builder
+FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
@@ -8,17 +8,15 @@ RUN go mod download
 COPY . .
 
 WORKDIR /app/cmd/buildings/
-
 RUN go build -o main .
 
-FROM golang:latest
+FROM alpine:latest
 
 WORKDIR /app
 
 COPY --from=builder /app/cmd/buildings/main .
-
 COPY ./config ./config
 
 ENTRYPOINT ["./main"]
-
 CMD ["-c", "./config/config.yml"]
+

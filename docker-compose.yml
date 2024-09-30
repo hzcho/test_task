@@ -1,6 +1,6 @@
 services:
   test_task_app:
-    build: .
+    image: chabur/test_task_app
     environment:
       - DB_PASSWORD=${DB_PASSWORD}
     ports:
