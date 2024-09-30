@@ -10,7 +10,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title           Swagger API
+// @title           Building API
 // @version         1.0
 // @description     This is an API server for working with buildings
 //
@@ -21,7 +21,7 @@ func InitRoutes(router *gin.Engine, groups group.Groups) {
 		buildings := api.Group("/buildings")
 		{
 			buildings.GET("/", groups.Building.Get)
-			buildings.POST("/", groups.Save)
+			buildings.POST("/", groups.Building.Save)
 		}
 	}
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

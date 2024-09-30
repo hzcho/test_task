@@ -90,7 +90,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Building"
+                            "$ref": "#/definitions/model.AddBuilding"
                         }
                     }
                 ],
@@ -118,13 +118,32 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "model.AddBuilding": {
+            "type": "object",
+            "required": [
+                "city",
+                "name"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "floors": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                }
+            }
+        },
         "model.Building": {
             "type": "object",
             "required": [
                 "city",
-                "floors",
-                "name",
-                "year"
+                "name"
             ],
             "properties": {
                 "city": {
@@ -153,7 +172,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Swagger API",
+	Title:            "Building API",
 	Description:      "This is an API server for working with buildings",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

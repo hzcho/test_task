@@ -1,10 +1,7 @@
 package config
 
 import (
-	"os"
 	"time"
-
-	"github.com/ilyakaznacheev/cleanenv"
 )
 
 type Config struct {
@@ -24,22 +21,9 @@ type DB struct {
 	Port     string `yml:"port" env-required:"true"`
 	DBName   string `yml:"dbname" env-required:"true"`
 	SSLMode  string `yml:"sslmode" env-required:"true"`
-	Password string `yml:"password" env-required:"true"`
+	Password string `env:"DB_PASSWORD" env-required:"true"`
 }
 
-func LoadConfig(path string) *Config {
-	if path == "" {
-		panic("path is empty")
-	}
-
-	if _, err := os.Stat(path); err != nil {
-		panic(err)
-	}
-
-	cfg := &Config{}
-	if err := cleanenv.ReadConfig(path, cfg); err != nil {
-		panic(err)
-	}
-
-	return cfg
+type MigConfig struct {
+	DB `yml:"db" env-required:"true"`
 }

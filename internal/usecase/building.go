@@ -32,10 +32,17 @@ func (b *Building) Get(ctx context.Context, filter model.Filter) ([]*model.Build
 	return buildings, nil
 }
 
-func (b *Building) Save(ctx context.Context, building model.Building) (uint64, error) {
+func (b *Building) Save(ctx context.Context, building model.AddBuilding) (uint64, error) {
 	log := b.log.WithField("op", "internal/usecase/building/Save")
 
-	id, err := b.bldRepo.Save(ctx, building)
+	bld := model.Building{
+		Name:   building.Name,
+		City:   building.City,
+		Year:   building.Year,
+		Floors: building.Floors,
+	}
+
+	id, err := b.bldRepo.Save(ctx, bld)
 	if err != nil {
 		log.Error(err)
 		return 0, err

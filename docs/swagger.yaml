@@ -1,4 +1,18 @@
 definitions:
+  model.AddBuilding:
+    properties:
+      city:
+        type: string
+      floors:
+        type: integer
+      name:
+        type: string
+      year:
+        type: integer
+    required:
+    - city
+    - name
+    type: object
   model.Building:
     properties:
       city:
@@ -13,15 +27,13 @@ definitions:
         type: integer
     required:
     - city
-    - floors
     - name
-    - year
     type: object
 host: localhost:8080
 info:
   contact: {}
   description: This is an API server for working with buildings
-  title: Swagger API
+  title: Building API
   version: "1.0"
 paths:
   /api/v1/buildings:
@@ -72,7 +84,7 @@ paths:
         name: building
         required: true
         schema:
-          $ref: '#/definitions/model.Building'
+          $ref: '#/definitions/model.AddBuilding'
       produces:
       - application/json
       responses:

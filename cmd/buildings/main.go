@@ -19,11 +19,15 @@ func main() {
 
 	ctx := context.Background()
 
-	cfg := config.LoadConfig(path)
+	cfg := config.Config{}
+	err := config.LoadConfig(path, &cfg)
+	if err != nil {
+		panic(err)
+	}
 
 	log := logrus.New()
 
-	app := app.NewApp(ctx, cfg, log)
+	app := app.NewApp(ctx, &cfg, log)
 
 	go func() {
 		app.Start()

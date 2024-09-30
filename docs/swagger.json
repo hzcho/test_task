@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "This is an API server for working with buildings",
-        "title": "Swagger API",
+        "title": "Building API",
         "contact": {},
         "version": "1.0"
     },
@@ -83,7 +83,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Building"
+                            "$ref": "#/definitions/model.AddBuilding"
                         }
                     }
                 ],
@@ -111,13 +111,32 @@
         }
     },
     "definitions": {
+        "model.AddBuilding": {
+            "type": "object",
+            "required": [
+                "city",
+                "name"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "floors": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                }
+            }
+        },
         "model.Building": {
             "type": "object",
             "required": [
                 "city",
-                "floors",
-                "name",
-                "year"
+                "name"
             ],
             "properties": {
                 "city": {

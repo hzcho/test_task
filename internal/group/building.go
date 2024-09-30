@@ -77,13 +77,13 @@ func (b *Building) Get(c *gin.Context) {
 // @ID save-building
 // @Accept json
 // @Produce json
-// @Param building body model.Building true "Building"
+// @Param building body model.AddBuilding true "Building"
 // @Success 200 {integer} int "ID of the saved building"
 // @Failure 400 {string} string "Invalid request format"
 // @Failure 500 {string} string "Server error"
 // @Router /api/v1/buildings [post]
 func (b *Building) Save(c *gin.Context) {
-	building := model.Building{}
+	building := model.AddBuilding{}
 
 	if err := c.ShouldBindJSON(&building); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "bad request")

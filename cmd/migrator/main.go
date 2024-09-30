@@ -31,7 +31,11 @@ func main() {
 		log.Fatal("migration file path is empty")
 	}
 
-	cfg := config.LoadConfig(configPath)
+	cfg := config.MigConfig{}
+	err := config.LoadConfig(configPath, &cfg)
+	if err != nil {
+		panic(err)
+	}
 
 	dbUrl := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s",
 		cfg.DB.Username, cfg.DB.Password, cfg.DB.Host, cfg.DB.Port, cfg.DB.DBName, cfg.DB.SSLMode)
