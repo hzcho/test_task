@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   test_task_app:
     image: chabur/test_task_app
@@ -16,3 +18,8 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./schema/000001_init.up.sql:/docker-entrypoint-initdb.d/000001_init.up.sql
+      - db:/var/lib/postgresql/data 
+
+volumes:
+  db:
+    driver: local
