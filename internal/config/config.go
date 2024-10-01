@@ -23,7 +23,3 @@ type DB struct {
 	SSLMode  string `yml:"sslmode" env-required:"true"`
 	Password string `env:"DB_PASSWORD" env-required:"true"`
 }
-
-type MigConfig struct {
-	DB `yml:"db" env-required:"true"`
-}
